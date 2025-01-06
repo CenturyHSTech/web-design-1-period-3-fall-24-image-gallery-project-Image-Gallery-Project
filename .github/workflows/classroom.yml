@@ -26,7 +26,7 @@ jobs:
       id: test-html
       uses: classroom-resources/autograding-command-grader@v1
       with:
-        test-name: 'Test HTML'
+        test-name: test-html
         setup-command: . ./venv/bin/activate && pip install -r requirements.txt
         command: . ./venv/bin/activate && pytest tests/test_html.py
         timeout: 10
@@ -36,7 +36,7 @@ jobs:
       id: test-html-exceeds
       uses: classroom-resources/autograding-command-grader@v1
       with:
-        test-name: 'Test HTML Exceeds'
+        test-name: test-html-exceeds
         setup-command: . ./venv/bin/activate && pip install -r requirements.txt
         command: . ./venv/bin/activate && pytest tests/test_html_exceeds.py
         timeout: 10
@@ -46,7 +46,7 @@ jobs:
       id: test-css
       uses: classroom-resources/autograding-command-grader@v1
       with:
-        test-name: 'Test CSS'
+        test-name: test-css
         setup-command: . ./venv/bin/activate && pip install -r requirements.txt
         command: . ./venv/bin/activate && pytest tests/test_css.py
         timeout: 10
@@ -56,7 +56,7 @@ jobs:
       id: test-css-exceeds
       uses: classroom-resources/autograding-command-grader@v1
       with:
-        test-name: 'Test CSS Exceeds'
+        test-name: test-css-exceeds
         setup-command: . ./venv/bin/activate && pip install -r requirements.txt
         command: . ./venv/bin/activate && pytest tests/test_css_exceeds.py
         timeout: 10
