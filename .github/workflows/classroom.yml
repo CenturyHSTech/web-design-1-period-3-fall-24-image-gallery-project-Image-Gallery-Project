@@ -22,52 +22,52 @@ jobs:
     - name: Create virtual environment
       run: python -m venv venv
 
-    - name: 'Test HTML'
+    - name: Test HTML
       id: test-html
       uses: classroom-resources/autograding-command-grader@v1
       with:
-        test-name: test-html
+        test-name: Test HTML
         setup-command: . ./venv/bin/activate && pip install -r requirements.txt
         command: . ./venv/bin/activate && pytest tests/test_html.py
         timeout: 10
         max-score: 3
 
-    - name: 'Test HTML Exceeds'
-      id: test-html-exceeds
+    - name: Test Exceeds HTML
+      id: test-exceeds-html
       uses: classroom-resources/autograding-command-grader@v1
       with:
-        test-name: test-html-exceeds
+        test-name: test-exceeds-html
         setup-command: . ./venv/bin/activate && pip install -r requirements.txt
         command: . ./venv/bin/activate && pytest tests/test_html_exceeds.py
         timeout: 10
-        max-score: 2
+        max-score: 1
   
-    - name: 'Test CSS'
+    - name: Test CSS
       id: test-css
       uses: classroom-resources/autograding-command-grader@v1
       with:
-        test-name: test-css
+        test-name: Test CSS
         setup-command: . ./venv/bin/activate && pip install -r requirements.txt
         command: . ./venv/bin/activate && pytest tests/test_css.py
         timeout: 10
         max-score: 3
 
-    - name: 'Test CSS Exceeds'
-      id: test-css-exceeds
+    - name: 'Test Exceeds CSS'
+      id: test-exceeds-css
       uses: classroom-resources/autograding-command-grader@v1
       with:
-        test-name: test-css-exceeds
+        test-name: test-exceeds-css
         setup-command: . ./venv/bin/activate && pip install -r requirements.txt
         command: . ./venv/bin/activate && pytest tests/test_css_exceeds.py
         timeout: 10
-        max-score: 2
+        max-score: 1
 
     - name: Autograding Reporter
-      uses: education/autograding-grading-reporter@v1
+      uses: classroom-resources/autograding-grading-reporter@v1
       env:
         TEST-HTML_RESULTS: "${{steps.test-html.outputs.result}}"
-        TEST-HTML_EXCEEDS: "${{steps.test-html-exceeds.outputs.result}}"
+        TEST-HTML_EXCEEDS: "${{steps.test-exceeds-html.outputs.result}}"
         TEST-CSS_RESULTS: "${{steps.test-css.outputs.result}}"
-        TEST_CSS_EXCEEDS: "${{steps.test-css-exceeds.outputs.result}}"
+        TEST_CSS_EXCEEDS: "${{steps.test-exceeds-css.outputs.result}}"
       with:
-        runners: test-html,test-html-exceeds,test-css,test-css-exceeds
+        runners: test-html,test-exceeds-html,test-css,test-exceeds-css
