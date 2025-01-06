@@ -31,11 +31,11 @@ jobs:
         timeout: 10
         max-score: 3
 
-    - name: Test HTML Exceeds FTW
+    - name: Test HTML Exceeds
       id: test-html-exceeds
       uses: classroom-resources/autograding-command-grader@v1
       with:
-        test-name: Test Exceeds FTW
+        test-name: Test HTML Exceeds
         setup-command: . ./venv/bin/activate && pip install -r requirements.txt
         command: . ./venv/bin/activate && pytest tests/test_html_exceeds.py
         timeout: 10
@@ -51,11 +51,11 @@ jobs:
         timeout: 10
         max-score: 3
 
-    - name: Test CSS Exceeds FTW
+    - name: Test CSS Exceeds
       id: test-css-exceeds
       uses: classroom-resources/autograding-command-grader@v1
       with:
-        test-name: Test Exceeds - For The Win
+        test-name: Test CSS Exceeds
         setup-command: . ./venv/bin/activate && pip install -r requirements.txt
         command: . ./venv/bin/activate && pytest tests/test_css_exceeds.py
         timeout: 10
@@ -65,8 +65,8 @@ jobs:
       uses: classroom-resources/autograding-grading-reporter@v1
       env:
         TEST-HTML_RESULTS: "${{steps.test-html.outputs.result}}"
-        TEST-HTML_EXCEEDS_FTW: "${{steps.test-html-exceeds.outputs.result}}"
+        TEST-HTML_EXCEEDS: "${{steps.test-html-exceeds.outputs.result}}"
         TEST-CSS_RESULTS: "${{steps.test-css.outputs.result}}"
-        TEST_CSS_EXCEEDS_FTW: "${{steps.test-css-exceeds.outputs.result}}"
+        TEST_CSS_EXCEEDS: "${{steps.test-css-exceeds.outputs.result}}"
       with:
         runners: test-html,test-css
