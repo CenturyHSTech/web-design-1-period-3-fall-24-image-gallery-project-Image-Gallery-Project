@@ -63,7 +63,7 @@ jobs:
         max-score: 1
 
     - name: Autograding Reporter
-      uses: classroom-resources/autograding-grading-reporter@v1
+      uses: ./
       env:
         TEST-HTML_RESULTS: "${{steps.test-html.outputs.result}}"
         TEST-HTML_EXCEEDS: "${{steps.test-exceeds-html.outputs.result}}"
